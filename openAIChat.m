@@ -8,7 +8,7 @@ function [result,tokens] = openAIChat(content)
     % Define the API endpoint Davinci
     api_endpoint = "https://api.openai.com/v1/chat/completions";
     % Define the API key from https://beta.openai.com/account/api-keys
-    api_key = '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';
+    api_key = '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';
     data = jsondecode('{"model":"gpt-3.5-turbo","messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"What is my birthday?"}]}');
     data.messages(2).content = content;
     % Define the headers for the API request
@@ -20,7 +20,7 @@ function [result,tokens] = openAIChat(content)
     request = matlab.net.http.RequestMessage('post',headers,data);
     % Send the request and store the response
     response = send(request, URI(api_endpoint));
-    % Extract the response text
+    % Extract the response text'
     result = response.Body.Data.choices.message.content;
     tokens = response.Body.Data.usage;
     disp(result);
